@@ -1,18 +1,17 @@
 
 
 local CharaList = {}
-local CharaIndex = 1
+local param = {
+	index = 1,
+	frameCount = 0,
+}
 
---ターゲット更新--
-local function updateTarget()
-
-end
 
 
 local function Add(chara)
 	chara.id = CharaIndex
-	CharaList[CharaIndex] = chara
-	CharaIndex = CharaIndex + 1	
+	CharaList[param.index] = chara
+	param.index = param.index + 1	
 end
 
 
@@ -23,7 +22,8 @@ local function Execute()
 		chara.Execute(chara)
 	end
 
-	updateTarget()
+
+	param.frameCount = param.frameCount + 1
 end
 
 local function GetCharaByID(id)

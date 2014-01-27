@@ -11,6 +11,7 @@
 
 Character = require "chara"
 CharaMgr = require "charaManager"
+Base = require "Base"
 
 --display.setDefault( "background", 1 )
 display.setStatusBar( display.HiddenStatusBar )
@@ -33,14 +34,20 @@ local function init()
 	--background:setFillColor(1.0, 1.0, 1.0, 1.0)
 
 	--local boostSpot = getImage(group, "menu", "boost1", 50, 50, "assets")
-	Character.Create(CharaConst.TEAM.A, 1, 50, 40)
-	Character.Create(CharaConst.TEAM.A, 2, 150, 40)
-	Character.Create(CharaConst.TEAM.A, 3, 250, 40)
+	local chara1 = Character.Create(CharaConst.TEAM.A, 1, 50, 50)
+	local chara2 = Character.Create(CharaConst.TEAM.A, 2, 150, 50)
+	local chara3 = Character.Create(CharaConst.TEAM.A, 3, 250, 50)
+	Base.Create(CharaConst.TEAM.A, 1, chara1)
+	Base.Create(CharaConst.TEAM.A, 2, chara2)
+	Base.Create(CharaConst.TEAM.A, 3, chara3)
 
+	local chara4 = Character.Create(CharaConst.TEAM.B, 1, 50, 430)
+	local chara5 = Character.Create(CharaConst.TEAM.B, 2, 150, 430)
+	local chara6 = Character.Create(CharaConst.TEAM.B, 3, 250, 430)
+	Base.Create(CharaConst.TEAM.B, 1, chara4)
+	Base.Create(CharaConst.TEAM.B, 2, chara5)
+	Base.Create(CharaConst.TEAM.B, 3, chara6)
 
-	Character.Create(CharaConst.TEAM.B, 1, 50, 400)
-	Character.Create(CharaConst.TEAM.B, 2, 150, 400)
-	Character.Create(CharaConst.TEAM.B, 3, 250, 400)
 end
 
 
