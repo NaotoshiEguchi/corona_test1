@@ -30,9 +30,20 @@ local function GetCharaByID(id)
 	return CharaList[id]
 end
 
+local function GetCharaByTeamAndType(team, type)
+	for i = 1, #CharaList do
+		local chara = CharaList[i]
+		if chara.param.team == team and chara.param.type == type then
+			return chara
+		end
+	end
+end
+
+
 local CharaManager = {
 	Add = Add,
 	GetCharaByID = GetCharaByID,
+	GetCharaByTeamAndType = GetCharaByTeamAndType,
 
 	Execute = Execute,
 }

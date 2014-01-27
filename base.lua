@@ -1,5 +1,15 @@
 
 require "chara"
+CharaMgr = require "charaManager"
+
+
+local TargetType = {
+	CharaConst.TYPE.B,
+	CharaConst.TYPE.C,
+	CharaConst.TYPE.A,
+	CharaConst.TYPE.D,
+	-1,
+}
 
 local function touch(self, event)
 	print("touch!!" .. event.phase)
@@ -10,10 +20,28 @@ local function touch(self, event)
 		self.chara:SetTargetToBase(self)
 	elseif self.chara.param.state == CharaConst.STATE.STOP then
 		self.chara.param.state = CharaConst.STATE.MOVE
+
+
 		if self.chara.param.team == CharaConst.TEAM.A then
-			self.chara:SetTarget(4)
+			local type = TargetType[self.chara.param.type]
+			local target
+			if type > 0 then
+				target = CharaMgr.GetCharaByTeamAndType(CharaConst.TEAM.B, type)
+			else
+
+			end
+
+			self.chara:SetTarget(target)
 		else
-			self.chara:SetTarget(2)
+			local type = TargetType[self.chara.param.type]
+			local target
+			if type > 0 then
+				target = CharaMgr.GetCharaByTeamAndType(CharaConst.TEAM.A, type)
+			else
+
+			end
+
+			self.chara:SetTarget(target)
 		end
 	end	
 end
@@ -42,6 +70,7 @@ local function Create(team, type, chara)
 	base.x = chara:GetPositionX()
 	base.y = chara:GetPositionY()
 	base.chara = chara
+	chara.base = base
 	base.param = {
 		team = team,
 	}

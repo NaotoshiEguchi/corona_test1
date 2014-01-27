@@ -1,7 +1,7 @@
 CharaMgr = require "charaManager"
 
 CharaConst = {
-	TYPE = {A = 1, B = 2, C = 3},
+	TYPE = {A = 1, B = 2, C = 3, D = 4},
 	STATE = {MOVE = 1, RETURN = 2, ATTACK = 3, DEAD = 4, GO = 5, STOP = 6},
 	TEAM = {A = 1, B = 2},
 
@@ -35,7 +35,7 @@ local function moveToTarget(self)
 		self.group.x = self.group.x + dx
 		self.group.y = self.group.y + dy
 	end
-	
+
 	if distance <= 5 and  self.param.state == CharaConst.STATE.RETURN then
 		print("STOP!!!!")
 		self.param.state = CharaConst.STATE.STOP
@@ -56,10 +56,14 @@ local function GetPositionY(self)
 end
 
 
-local function SetTarget(self, id)
+local function SetTargetByID(self, id)
 	self.target = CharaMgr.GetCharaByID(id)
 end
 
+
+local function SetTarget(self, target)
+	self.target = target
+end
 local function SetTargetToBase(self, base)
 	self.target = base
 end
@@ -93,6 +97,7 @@ local function Create(team, type, x, y)
 	chara.touch = touch
 	chara.Execute = Execute
 	chara.SetTarget = SetTarget
+	chara.SetTargetByID = SetTargetByID
 	chara.SetTargetToBase = SetTargetToBase
 	chara.GetPosition = GetPosition
 	chara.GetPositionX = GetPositionX
